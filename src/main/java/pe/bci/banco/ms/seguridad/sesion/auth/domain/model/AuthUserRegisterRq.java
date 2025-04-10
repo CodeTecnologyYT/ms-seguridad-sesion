@@ -24,6 +24,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pe.bci.banco.ms.seguridad.sesion.shared.validations.EmailValid;
 
 /**
  * AuthUserRegisterRq.
@@ -42,8 +43,7 @@ public class AuthUserRegisterRq {
     private String name;
     /** email. */
     @NotBlank(message = "Correo no puede ser vacio")
-    @Email(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z0-9-]{2,}$",
-        message = "Email no tiene el formato Correcto")
+    @EmailValid(message = "Email no tiene el formato Correcto")
     private String email;
     /** password. */
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d{2})[a-zA-Z\\d]{2,}$",
