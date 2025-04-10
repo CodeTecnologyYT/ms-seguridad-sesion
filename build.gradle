@@ -23,6 +23,15 @@ repositories {
     mavenCentral()
 }
 
+// Definicion de variables para las versiones de las dependencias
+ext {
+    versions = [
+            'mapstruct'               : '1.6.3',
+            'bind_lombok_mapstruct': '0.2.0'
+    ]
+}
+
+
 dependencies {
     // dependencias de spring
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -37,9 +46,9 @@ dependencies {
     // dependencias de construccion de codigo
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    implementation 'org.mapstruct:mapstruct'
-    annotationProcessor 'org.mapstruct:mapstruct-processor'
-    implementation 'org.projectlombok:lombok-mapstruct-binding'
+    implementation "org.mapstruct:mapstruct:${versions.mapstruct}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${versions.mapstruct}"
+    implementation "org.projectlombok:lombok-mapstruct-binding:${versions.bind_lombok_mapstruct}"
     // dependencias de monitoreo
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
