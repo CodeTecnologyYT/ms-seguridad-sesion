@@ -30,7 +30,7 @@ public enum SecuritySessionError implements Error{
     /** ERROR_NOT_FOUND_USER. */
     ERROR_NOT_FOUND_USER("420", "No se encontro el usuario"),
     /** ERROR_EXIST_USER. */
-    ERROR_EXIST_USER("420", "Se encontro el usuario");
+    ERROR_EXIST_USER("420", "El correo ya registrado");
 
     /** code. */
     private final String code;
