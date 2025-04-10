@@ -1,0 +1,3 @@
+<changeSet id="v1.0-create-tables" author="bryan">
+	<sqlFile path="db/changelog/v1/v1.0-create-tables.sql" />
+</changeSet>
