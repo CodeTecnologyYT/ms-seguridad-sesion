@@ -1,3 +1,19 @@
-<changeSet id="v1.0-create-tables" author="bryan">
-	<sqlFile path="db/changelog/v1/v1.0-create-tables.sql" />
-</changeSet>
+<databaseChangeLog
+		xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+     https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+	<changeSet id="v1.0-create-tables" author="bryan">
+		<sqlFile path="db/changelog/v1/v1.0-create-tables.sql" />
+	</changeSet>
+
+	<changeSet id="v1.1-create-indexes" author="bryan">
+		<sqlFile path="db/changelog/v1/v1.1-create-indexes.sql" />
+	</changeSet>
+
+	<changeSet id="v1.2-create-indexes" author="bryan">
+		<sqlFile path="db/changelog/v1/v1.2-insert-data.sql" />
+	</changeSet>
+
+</databaseChangeLog>
