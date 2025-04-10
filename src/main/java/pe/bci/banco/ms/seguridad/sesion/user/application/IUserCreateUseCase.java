@@ -1,5 +1,5 @@
 /*
- * @(#)IUserFindUseCase.java
+ * @(#)IUserCreateUseCase.java
  *
  * Copyright (c) BCI (Chile). All rights reserved.
  *
@@ -12,31 +12,17 @@
  */
 package pe.bci.banco.ms.seguridad.sesion.user.application;
 
-import java.util.Optional;
+import pe.bci.banco.ms.seguridad.sesion.auth.domain.model.AuthUserRegisterRq;
 import pe.bci.banco.ms.seguridad.sesion.user.domain.model.UserRs;
 
 /**
- * IUserFindUseCase.
+ * IUserCreateUseCase.
  *
  * @author Bryan Rosas.
  * @version 1.0.0, 10-04-2025
  */
-public interface IUserFindUseCase {
+public interface IUserCreateUseCase {
 
-    /**
-     * Find UserRs by email.
-     *
-     * @param email {@link String}
-     * @return {@link UserRs}
-     */
-    UserRs findByEmail(String email);
-
-    /**
-     * Find UserRs by email used Optional.
-     *
-     * @param email {@link String}
-     * @return {@link UserRs}
-     */
-    Optional<UserRs> findOptionalByEmail(String email);
+    UserRs createUser(AuthUserRegisterRq userRegister);
 
 }

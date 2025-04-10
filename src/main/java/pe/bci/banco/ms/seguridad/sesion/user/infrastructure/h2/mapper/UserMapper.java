@@ -12,8 +12,13 @@
  */
 package pe.bci.banco.ms.seguridad.sesion.user.infrastructure.h2.mapper;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
 import org.mapstruct.Mapper;
-import pe.bci.banco.ms.seguridad.sesion.user.domain.model.User;
+import org.mapstruct.Mapping;
+import pe.bci.banco.ms.seguridad.sesion.auth.domain.model.AuthUserRegisterRq;
+import pe.bci.banco.ms.seguridad.sesion.user.domain.model.UserRs;
 import pe.bci.banco.ms.seguridad.sesion.user.infrastructure.h2.entity.UserEntity;
 
 /**
@@ -22,15 +27,27 @@ import pe.bci.banco.ms.seguridad.sesion.user.infrastructure.h2.entity.UserEntity
  * @author Bryan Rosas.
  * @version 1.0.0, 10-04-2025
  */
-@Mapper(uses = PhoneMapper.class)
+@Mapper(uses = PhoneMapper.class, imports = {LocalDateTime.class, Boolean.class, UUID.class})
 public interface UserMapper {
 
     /**
      * Convert entity to domain.
      *
      * @param user {@link UserEntity}
-     * @return {@link User}
+     * @return {@link UserRs}
      */
-    User entityToResponse(final UserEntity user);
+    UserRs entityToResponse(final UserEntity user);
+
+    /**
+     * Convert domain to entity.
+     *
+     * @param user {@link UserRs}
+     * @return {@link UserEntity}
+     */
+    @Mapping(target = "id", expression = "java(UUID.randomUUID())")
+    @Mapping(target = "active", expression = "java(Boolean.TRUE)")
+    @Mapping(target = "createdAt", expression = "java(LocalDateTime.now())")
+    @Mapping(target = "updatedAt", expression = "java(LocalDateTime.now())")
+    UserEntity requestToEntity(final AuthUserRegisterRq user);
 
 }

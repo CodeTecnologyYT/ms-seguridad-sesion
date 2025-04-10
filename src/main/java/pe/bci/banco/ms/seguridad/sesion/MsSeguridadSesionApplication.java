@@ -6,6 +6,8 @@ import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @PropertySource("classpath:ms-seguridad-sesion-1.0.properties")
+@PropertySource("classpath:redis.properties")
+@PropertySource("classpath:security.properties")
 public class MsSeguridadSesionApplication {
 
     public static void main(String[] args) {

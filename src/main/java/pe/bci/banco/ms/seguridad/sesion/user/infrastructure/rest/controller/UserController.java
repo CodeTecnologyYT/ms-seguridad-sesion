@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pe.bci.banco.ms.seguridad.sesion.user.application.UserFindUseCase;
-import pe.bci.banco.ms.seguridad.sesion.user.domain.model.User;
+import pe.bci.banco.ms.seguridad.sesion.user.domain.model.UserRs;
 
 /**
  * UserController.
@@ -35,7 +35,7 @@ public class UserController {
     private final UserFindUseCase userFindUseCase;
 
     @GetMapping("/{email}")
-    public User findUser(@PathVariable("email") final String email){
+    public UserRs findUser(@PathVariable("email") final String email){
         return userFindUseCase.findByEmail(email);
     }
 

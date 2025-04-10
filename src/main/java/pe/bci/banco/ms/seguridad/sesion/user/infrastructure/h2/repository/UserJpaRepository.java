@@ -26,7 +26,7 @@ import pe.bci.banco.ms.seguridad.sesion.user.infrastructure.h2.entity.UserEntity
 public interface UserJpaRepository extends JpaRepository<UserEntity, UUID> {
 
     /**
-     * Find User by email.
+     * Find UserRs by email.
      *
      * @param email {@link String}
      * @return {@link UserEntity}

@@ -16,7 +16,8 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Component;
-import pe.bci.banco.ms.seguridad.sesion.user.domain.model.User;
+import pe.bci.banco.ms.seguridad.sesion.auth.domain.model.AuthUserRegisterRq;
+import pe.bci.banco.ms.seguridad.sesion.user.domain.model.UserRs;
 import pe.bci.banco.ms.seguridad.sesion.user.domain.repository.UserRepositoryPort;
 import pe.bci.banco.ms.seguridad.sesion.user.infrastructure.h2.mapper.UserMapper;
 import pe.bci.banco.ms.seguridad.sesion.user.infrastructure.h2.repository.UserJpaRepository;
@@ -40,9 +41,23 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
      * {@inheritDoc}
      */
     @Override
-    public Optional<User> findByEmail(final String email) {
+    public Optional<UserRs> findByEmail(final String email) {
         return userJpaRepository.findByEmail(email)
             .map(userMapper::entityToResponse);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UserRs save(final AuthUserRegisterRq userRequest) {
+        final var userEntity = userMapper.requestToEntity(userRequest);
+        userEntity.setPhones(userEntity.getPhones().stream()
+            .map(p -> {
+                p.setUser(userEntity);
+                return p;
+            }).toList());
+        return userMapper.entityToResponse(userJpaRepository.save(userEntity));
     }
 
 }

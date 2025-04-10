@@ -26,8 +26,9 @@ repositories {
 // Definicion de variables para las versiones de las dependencias
 ext {
     versions = [
-            'mapstruct'               : '1.6.3',
-            'bind_lombok_mapstruct': '0.2.0'
+            'mapstruct'            : '1.6.3',
+            'bind_lombok_mapstruct': '0.2.0',
+            'jwt'                  : '4.5.0'
     ]
 }
 
@@ -38,6 +39,7 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     // dependencias de seguridad
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation "com.auth0:java-jwt:${versions.jwt}"
     // dependencias de base de datos
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'

@@ -13,7 +13,8 @@
 package pe.bci.banco.ms.seguridad.sesion.user.domain.repository;
 
 import java.util.Optional;
-import pe.bci.banco.ms.seguridad.sesion.user.domain.model.User;
+import pe.bci.banco.ms.seguridad.sesion.auth.domain.model.AuthUserRegisterRq;
+import pe.bci.banco.ms.seguridad.sesion.user.domain.model.UserRs;
 
 /**
  * UserRepositoryPort.
@@ -24,11 +25,19 @@ import pe.bci.banco.ms.seguridad.sesion.user.domain.model.User;
 public interface UserRepositoryPort {
 
     /**
-     * Find User by email.
+     * Find UserRs by email.
      *
      * @param email {@link String}
-     * @return {@link User}
+     * @return {@link UserRs}
      */
-    Optional<User> findByEmail(String email);
+    Optional<UserRs> findByEmail(String email);
+
+    /**
+     * Save user.
+     *
+     * @param userRequest {@link UserRs}
+     * @return {@link UserRs}
+     */
+    UserRs save(AuthUserRegisterRq userRequest);
     
 }

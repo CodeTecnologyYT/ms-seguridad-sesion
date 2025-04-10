@@ -1,5 +1,5 @@
 /*
- * @(#)Phone.java
+ * @(#)PhoneRs.java
  *
  * Copyright (c) BCI (Chile). All rights reserved.
  *
@@ -12,15 +12,15 @@
  */
 package pe.bci.banco.ms.seguridad.sesion.user.domain.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * Phone.
+ * PhoneRs.
  *
  * @author Bryan Rosas.
  * @version 1.0.0, 10-04-2025
@@ -29,9 +29,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Phone {
+@Builder
+public class PhoneRs {
 
     /** id. */
+    private UUID id;
+    /** number. */
     private String number;
     /** citycode. */
     private String citycode;
