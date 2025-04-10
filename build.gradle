@@ -28,7 +28,8 @@ ext {
     versions = [
             'mapstruct'            : '1.6.3',
             'bind_lombok_mapstruct': '0.2.0',
-            'jwt'                  : '4.5.0'
+            'jwt'                  : '4.5.0',
+            'swagger'              : '2.8.4'
     ]
 }
 
@@ -36,6 +37,7 @@ ext {
 dependencies {
     // dependencias de spring
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     // dependencias de seguridad
     implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -51,6 +53,8 @@ dependencies {
     implementation "org.mapstruct:mapstruct:${versions.mapstruct}"
     annotationProcessor "org.mapstruct:mapstruct-processor:${versions.mapstruct}"
     implementation "org.projectlombok:lombok-mapstruct-binding:${versions.bind_lombok_mapstruct}"
+    // Dependencias de Documentacion
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${versions.swagger}"
     // dependencias de monitoreo
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'

@@ -59,8 +59,7 @@ public class ExceptionConfig extends ResponseEntityExceptionHandler {
     protected ResponseEntity<SimpleErrorResponse> handleExceptionInternal(Exception ex) {
         log.error("BFF-MANAGER-CUSTOMER_EXCEPTION-GENERAL:", ex);
         return new ResponseEntity(SimpleErrorResponse.builder()
-            .code(SecuritySessionError.DEFAULT.getCode())
-            .message(ex.getMessage())
+            .mensaje(ex.getMessage())
             .build(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -75,8 +74,7 @@ public class ExceptionConfig extends ResponseEntityExceptionHandler {
     public ResponseEntity<SimpleErrorResponse> handleDatabaseException(Exception ex) {
         log.error("BFF-MANAGER-CUSTOMER_EXCEPTION-BASE-DATOS:", ex);
         return new ResponseEntity<>(SimpleErrorResponse.builder()
-            .code(SecuritySessionError.DEFAULT.getCode())
-            .message("Error interno en la base de datos")
+            .mensaje("Error interno en la base de datos")
             .build(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -89,7 +87,7 @@ public class ExceptionConfig extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = { SimpleException.class })
     ResponseEntity<SimpleErrorResponse> handleSimpleException(SimpleException ex) {
         return new ResponseEntity<>(SimpleErrorResponse.builder()
-            .message(ex.getMessage())
+            .mensaje(ex.getMessage())
             .build(), HttpStatus.valueOf(ex.getStatus()));
     }
 
@@ -129,7 +127,7 @@ public class ExceptionConfig extends ResponseEntityExceptionHandler {
         }
 
         return new ResponseEntity<>(SimpleErrorResponse.builder()
-            .message(errors.toString())
+            .mensaje(errors.toString())
             .build(), HttpStatus.BAD_REQUEST);
     }
 

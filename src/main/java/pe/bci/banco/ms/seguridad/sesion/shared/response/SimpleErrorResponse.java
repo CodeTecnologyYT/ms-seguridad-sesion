@@ -32,11 +32,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SimpleErrorResponse {
 
-    /** code. */
-    private String code;
     /** message. */
-    private String message;
-    /** errors. */
-    private Map<String,String> errors;
+    private String mensaje;
 
 }

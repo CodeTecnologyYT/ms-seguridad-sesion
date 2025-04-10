@@ -12,6 +12,7 @@
  */
 package pe.bci.banco.ms.seguridad.sesion.auth.infrastructure.rest.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,7 +37,7 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public AuthUserRegisterRs register(@RequestBody final AuthUserRegisterRq userRegisterRequest){
+    public AuthUserRegisterRs register(@Valid @RequestBody final AuthUserRegisterRq userRegisterRequest){
         return authUserRegisterUseCase.register(userRegisterRequest);
     }
 
