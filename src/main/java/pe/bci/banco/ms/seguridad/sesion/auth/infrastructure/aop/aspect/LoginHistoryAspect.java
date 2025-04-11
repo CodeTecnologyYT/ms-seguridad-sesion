@@ -39,18 +39,21 @@ public class LoginHistoryAspect {
     /** request. */
     private final HttpServletRequest request;
 
+    /**
+     * Interceptor for when generate token in la application
+     *
+     * @param joinPoint {@link JoinPoint}
+     * @param token {@link Object}
+     */
     @AfterReturning(
         pointcut = """
              execution(* pe.bci.banco.ms.seguridad.sesion.auth.infrastructure.jwt.provider.JwtProvider.generateToken(..))
             """, returning = "token")
-    public void afterLogin(JoinPoint joinPoint, Object token) {
-        {
-            Object[] args = joinPoint.getArgs();
-            if (args.length > 0 && args[0] instanceof UserDetails userDetails) {
-                this.loginCreateUseCase.createHistoryLogin(userDetails.getUsername(), request.getRemoteAddr(),
-                    LocalDateTime.now());
-            }
-
+    public void afterLogin(final JoinPoint joinPoint, final Object token) {
+        Object[] args = joinPoint.getArgs();
+        if (args.length > 0 && args[0] instanceof UserDetails userDetails) {
+            this.loginCreateUseCase.createHistoryLogin(userDetails.getUsername(), request.getRemoteAddr(),
+                LocalDateTime.now());
         }
     }
 
