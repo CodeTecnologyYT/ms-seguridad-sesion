@@ -49,7 +49,7 @@ class UserCreateUseCaseTest {
     @Test
     void createUser() {
         // GIVEN
-        final var userRegister = AuthUserFixture.getAuthUserRegisterRqSuccess();
+        final var userRegister = AuthUserFixture.getAuthUserRegisterRqEmailExist();
         Mockito.when(this.userRepositoryPort.save(userRegister))
             .thenReturn(UserFixture.getUserRs());
         // WHEN

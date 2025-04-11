@@ -76,7 +76,7 @@ public class UserRepositoryAdapterTest {
         Mockito.when(this.userJpaRepository.save(ArgumentMatchers.any(UserEntity.class)))
             .thenReturn(UserFixture.getUserEntity());
         // WHEN
-        final var user = this.userRepositoryAdapter.save(AuthUserFixture.getAuthUserRegisterRqSuccess());
+        final var user = this.userRepositoryAdapter.save(AuthUserFixture.getAuthUserRegisterRqEmailExist());
         // THEN
         Mockito.verify(this.userJpaRepository, Mockito.times(1))
             .save(ArgumentMatchers.any(UserEntity.class));

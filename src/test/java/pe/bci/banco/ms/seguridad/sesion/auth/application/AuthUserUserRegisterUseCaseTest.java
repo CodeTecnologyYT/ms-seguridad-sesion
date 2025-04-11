@@ -78,7 +78,7 @@ class AuthUserUserRegisterUseCaseTest {
             .thenReturn(AuthUserFixture.TEST_TOKEN);
         // WHEN
         final var response = this.authUserUserRegisterUseCase.register(
-            AuthUserFixture.getAuthUserRegisterRqSuccess());
+            AuthUserFixture.getAuthUserRegisterRqEmailExist());
         // THEN
         Mockito.verify(this.userFindUseCase, Mockito.times(1))
             .findOptionalByEmail(ArgumentMatchers.anyString());
@@ -98,7 +98,7 @@ class AuthUserUserRegisterUseCaseTest {
     @Test
     void testRegisterUserExist(){
         // GIVEN
-        final var request = AuthUserFixture.getAuthUserRegisterRqSuccess();
+        final var request = AuthUserFixture.getAuthUserRegisterRqEmailExist();
         Mockito.when(this.userFindUseCase.findOptionalByEmail(ArgumentMatchers.anyString()))
             .thenReturn(Optional.of(UserFixture.getUserRs()));
         // THEN

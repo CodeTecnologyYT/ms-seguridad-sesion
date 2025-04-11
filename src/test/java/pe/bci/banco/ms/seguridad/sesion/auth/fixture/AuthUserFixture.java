@@ -44,7 +44,7 @@ public final class AuthUserFixture {
     public static AuthUserRegisterRq getAuthUserRegisterRqSuccess() {
         return AuthUserRegisterRq.builder()
             .name("Bryan Rosas Quispe")
-            .email(UserFixture.TEST_EMAIL)
+            .email("bryan@nisum.com")
             .password("Hunter23")
             .phones(Collections.singletonList(
                 AuthUserRegisterRq.PhoneRegister.builder()
