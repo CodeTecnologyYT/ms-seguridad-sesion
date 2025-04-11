@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - master
-
 jobs:
-  test-build-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    environment: DOCKER
 
     steps:
     - name: 📥 Checkout repo
