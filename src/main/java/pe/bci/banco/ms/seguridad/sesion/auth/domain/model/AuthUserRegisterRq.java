@@ -12,6 +12,7 @@
  */
 package pe.bci.banco.ms.seguridad.sesion.auth.domain.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -38,16 +39,33 @@ import pe.bci.banco.ms.seguridad.sesion.shared.validations.EmailValid;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Schema(name = "User Request" , description = "Request para el registro de un usuario",
+    example = """
+        {
+            "name": "Juan Rodriguez",
+            "email": "juan@compan.org",
+            "password": "Hunter21",
+            "phones": [
+                {
+                    "number": "1234567",
+                    "citycode": "1",
+                    "countrycode": "57"
+                }
+            ]
+        }
+        """)
 public class AuthUserRegisterRq {
 
     /** name. */
     @NotBlank(message = "Nombre no puede ser vacio")
     private String name;
     /** email. */
+    @Schema(description = "Correo del usuario",example = "example@nisum.com", required = true)
     @NotBlank(message = "Correo no puede ser vacio")
     @EmailValid(message = "Email no tiene el formato Correcto")
     private String email;
     /** password. */
+    @Schema(description = "Password del usuario",example = "Password123",required = true)
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d{2})[a-zA-Z\\d]{2,}$",
         message = "La contraseña no tiene el formato correcto")
     @Size(min = 4, max = 100,
@@ -55,6 +73,7 @@ public class AuthUserRegisterRq {
     @NotNull(message = "Contrasena no puede ser vacio")
     private String password;
     /** phones. */
+    @Schema(description = "Telefonos del usuario")
     @Valid
     @NotEmpty(message = "Celulares no puede ser vacio")
     private List<PhoneRegister> phones;
@@ -70,17 +89,21 @@ public class AuthUserRegisterRq {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
+    @Schema(name = "Phone Request")
     public static class PhoneRegister {
 
         /** number. */
+        @Schema(description = "Numero de Telefono",example = "+511954206384",required = true)
         @Pattern(regexp = "^\\d{7,9}$", message = "El numero no tiene el formato correcto")
         @Size(min = 7, max = 10, message = "El numero debe tener 7 o mas digitos")
         @NotBlank(message = "Numero no puede ser vacio")
         private String number;
         /** citycode. */
+        @Schema(description = "Codigo de Ciudad", example = "1",required = true)
         @NotBlank(message = " Codigo de ciudad no puede ser vacio")
         private String citycode;
         /** countrycode. */
+        @Schema(description = "Codigo de Pais",example = "52",required = true)
         @NotBlank(message = "Codigo de pais no puede ser vacio")
         private String countrycode;
 

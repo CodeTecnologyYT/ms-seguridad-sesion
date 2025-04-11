@@ -10,7 +10,7 @@
  * In any event, this notice and the above copyright must always be included
  * verbatim with this file.
  */
-package pe.bci.banco.ms.seguridad.sesion.auth.infrastructure.encript;
+package pe.bci.banco.ms.seguridad.sesion.auth.infrastructure.encript.provider;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

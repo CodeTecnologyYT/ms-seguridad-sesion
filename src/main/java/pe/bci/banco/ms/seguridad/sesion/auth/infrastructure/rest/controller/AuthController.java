@@ -12,6 +12,10 @@
  */
 package pe.bci.banco.ms.seguridad.sesion.auth.infrastructure.rest.controller;
 
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -33,6 +37,7 @@ import pe.bci.banco.ms.seguridad.sesion.auth.domain.model.AuthUserRegisterRs;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/security/session/auth")
+@Tag(name = "Seguridad", description = "API de autenticacion")
 public class AuthController {
 
     /** authUserRegisterUseCase. */
@@ -46,6 +51,11 @@ public class AuthController {
      */
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
+    @ApiResponse(responseCode = "201", description = "Exito al crear un usuario")
+    @ApiResponse(responseCode = "400", description = "Error en la informacion a enviar",
+        content = @Content(schema = @Schema(hidden = true)))
+    @ApiResponse(responseCode = "500", description = "Error no esperado",
+        content = @Content(schema = @Schema(hidden = true)))
     public AuthUserRegisterRs register(@Valid @RequestBody final AuthUserRegisterRq userRegisterRequest){
         return this.authUserRegisterUseCase.register(userRegisterRequest);
     }
