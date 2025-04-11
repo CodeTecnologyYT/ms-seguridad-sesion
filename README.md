@@ -60,7 +60,7 @@ cd ms-seguridad-sesion
 
 ### **2. Configuración del Proyecto**
 
-La aplicacion por lo general esta configurada en el puerto `8080`
+La aplicacion por defecto esta configurada en el puerto `8080`
 
 - Asegúrate de tener **Java 17** instalado y configurado en tu entorno.
 
@@ -83,7 +83,7 @@ server.port=8080
 Para iniciar la aplicación, puedes usar **Maven**:
 
 ```bash
-mvn spring-boot:run
+./gradlew bootRun
 ```
 
 La aplicación estará disponible en: [http://localhost:8080](http://localhost:8080)
@@ -167,8 +167,13 @@ src
 Este proyecto incluye **JUnit** para pruebas unitarias. Ejecútalas con:
 
 ```bash
-mvn test
+./gradlew test
 ```
+### Probar la aplicacion
+Una vez que la aplicacion este corriendo puedes probar los endpoints de la aplicacion, para ello puedes usar el cliente de postman o swagger.
+
+Puedes probar la aplicacion usando el cliente de postman, puedes importar el archivo `postman_collection.json` que se encuentra en la raiz del proyecto.
+Tambien puede hacerlo por swagger ingresando a la ruta `http://localhost:8080/swagger-ui/index.html` y probando los endpoints.
 
 ---
 

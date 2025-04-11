@@ -12,6 +12,7 @@
  */
 package pe.bci.banco.ms.seguridad.sesion.auth.application;
 
+import io.micrometer.core.instrument.Counter;
 import java.util.Optional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -50,6 +51,9 @@ class AuthUserUserRegisterUseCaseTest {
     /** jwtProvider. */
     @Mock
     private JwtProviderPort jwtProviderPort;
+    /** loginCounter. */
+    @Mock
+    private Counter loginCounter;
     /** authUserUserRegisterUseCase. */
     @InjectMocks
     private AuthUserUserRegisterUseCase authUserUserRegisterUseCase;
@@ -76,6 +80,7 @@ class AuthUserUserRegisterUseCaseTest {
             .thenReturn(AuthUserFixture.TEST_PASSWORD);
         Mockito.when(this.jwtProviderPort.generateToken(ArgumentMatchers.any()))
             .thenReturn(AuthUserFixture.TEST_TOKEN);
+        Mockito.doNothing().when(this.loginCounter).increment();
         // WHEN
         final var response = this.authUserUserRegisterUseCase.register(
             AuthUserFixture.getAuthUserRegisterRqEmailExist());
