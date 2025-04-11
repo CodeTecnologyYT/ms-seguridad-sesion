@@ -17,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import pe.bci.banco.ms.seguridad.sesion.auth.domain.model.AuthUserRegisterRq;
 import pe.bci.banco.ms.seguridad.sesion.auth.domain.model.AuthUserRegisterRs;
+import pe.bci.banco.ms.seguridad.sesion.auth.domain.provider.EncryptProviderPort;
+import pe.bci.banco.ms.seguridad.sesion.auth.domain.provider.JwtProviderPort;
 import pe.bci.banco.ms.seguridad.sesion.auth.infrastructure.encript.EncryptProvider;
 import pe.bci.banco.ms.seguridad.sesion.auth.infrastructure.jwt.provider.JwtProvider;
 import pe.bci.banco.ms.seguridad.sesion.shared.exceptions.SecuritySessionError;
@@ -36,24 +38,24 @@ public class AuthUserUserRegisterUseCase implements IAuthUserRegisterUseCase {
 
     /** userFindUseCase. */
     private final IUserFindUseCase userFindUseCase;
-
+    /** userCreateUseCase. */
     private final IUserCreateUseCase userCreateUseCase;
     /** encryptProvider. */
-    private final EncryptProvider encryptProvider;
+    private final EncryptProviderPort encryptProvider;
     /** jwtProvider. */
-    private final JwtProvider jwtProvider;
+    private final JwtProviderPort jwtProvider;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public AuthUserRegisterRs register(final AuthUserRegisterRq userRegisterRequest) {
-        final var user = userFindUseCase.findOptionalByEmail(userRegisterRequest.getEmail());
+        final var user = this.userFindUseCase.findOptionalByEmail(userRegisterRequest.getEmail());
         if(user.isPresent()){
-            throw new SimpleException(SecuritySessionError.ERROR_EXIST_USER, HttpStatus.NOT_FOUND.value());
+            throw new SimpleException(SecuritySessionError.ERROR_EXIST_USER, HttpStatus.CONFLICT.value());
         }
         userRegisterRequest.setPassword(encryptProvider.encrypt(userRegisterRequest.getPassword()));
-        final var newUser = userCreateUseCase.createUser(userRegisterRequest);
+        final var newUser = this.userCreateUseCase.createUser(userRegisterRequest);
         // Generate Token
         final var userDetails = org.springframework.security.core.userdetails.User.builder()
             .username(userRegisterRequest.getEmail())
@@ -65,6 +67,7 @@ public class AuthUserUserRegisterUseCase implements IAuthUserRegisterUseCase {
             .builder()
             .id(newUser.getId())
             .created(newUser.getCreatedAt())
+            .lastLogin(newUser.getLastLogin())
             .modified(newUser.getUpdatedAt())
             .token(this.jwtProvider.generateToken(userDetails))
             .isactive(newUser.getActive())

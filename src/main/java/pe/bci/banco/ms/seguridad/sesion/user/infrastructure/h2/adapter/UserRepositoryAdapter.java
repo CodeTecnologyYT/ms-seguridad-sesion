@@ -42,7 +42,7 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
      */
     @Override
     public Optional<UserRs> findByEmail(final String email) {
-        return userJpaRepository.findByEmail(email)
+        return this.userJpaRepository.findByEmail(email)
             .map(userMapper::entityToResponse);
     }
 
@@ -51,13 +51,13 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
      */
     @Override
     public UserRs save(final AuthUserRegisterRq userRequest) {
-        final var userEntity = userMapper.requestToEntity(userRequest);
+        final var userEntity = this.userMapper.requestToEntity(userRequest);
         userEntity.setPhones(userEntity.getPhones().stream()
             .map(p -> {
                 p.setUser(userEntity);
                 return p;
             }).toList());
-        return userMapper.entityToResponse(userJpaRepository.save(userEntity));
+        return this.userMapper.entityToResponse(this.userJpaRepository.save(userEntity));
     }
 
 }

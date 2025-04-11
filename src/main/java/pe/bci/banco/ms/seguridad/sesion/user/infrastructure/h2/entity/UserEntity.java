@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,6 +37,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "MSS_USER")
 public class UserEntity {
@@ -56,6 +58,9 @@ public class UserEntity {
     /** active. */
     @Column(name = "ACTIVE")
     private Boolean active;
+    /** lastLogin. */
+    @Column(name = "LAST_LOGIN")
+    private LocalDateTime lastLogin;
     /** createdAt. */
     @Column(name = "CREATED_AT")
     private LocalDateTime createdAt;

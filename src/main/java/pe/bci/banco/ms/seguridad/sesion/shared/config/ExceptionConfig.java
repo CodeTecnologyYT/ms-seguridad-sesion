@@ -125,9 +125,9 @@ public class ExceptionConfig extends ResponseEntityExceptionHandler {
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
         }
-
+        final var messageErrorFormatMerge = String.join(" | ", errors.values());
         return new ResponseEntity<>(SimpleErrorResponse.builder()
-            .mensaje(errors.toString())
+            .mensaje(messageErrorFormatMerge)
             .build(), HttpStatus.BAD_REQUEST);
     }
 

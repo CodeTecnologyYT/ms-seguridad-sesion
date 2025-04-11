@@ -44,6 +44,8 @@ public class UserRs {
     private String password;
     /** active. */
     private Boolean active;
+    /** lastLogin. */
+    private LocalDateTime lastLogin;
     /** createdAt. */
     private LocalDateTime createdAt;
     /** updatedAt. */

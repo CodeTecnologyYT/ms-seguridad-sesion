@@ -14,9 +14,11 @@ package pe.bci.banco.ms.seguridad.sesion.auth.infrastructure.rest.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pe.bci.banco.ms.seguridad.sesion.auth.application.IAuthUserRegisterUseCase;
 import pe.bci.banco.ms.seguridad.sesion.auth.domain.model.AuthUserRegisterRq;
@@ -33,12 +35,19 @@ import pe.bci.banco.ms.seguridad.sesion.auth.domain.model.AuthUserRegisterRs;
 @RequestMapping("/security/session/auth")
 public class AuthController {
 
+    /** authUserRegisterUseCase. */
     private final IAuthUserRegisterUseCase authUserRegisterUseCase;
 
-
+    /**
+     * Endpoint de creacion de usuarios
+     *
+     * @param userRegisterRequest {@link AuthUserRegisterRq}
+     * @return {@link AuthUserRegisterRs}
+     */
     @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
     public AuthUserRegisterRs register(@Valid @RequestBody final AuthUserRegisterRq userRegisterRequest){
-        return authUserRegisterUseCase.register(userRegisterRequest);
+        return this.authUserRegisterUseCase.register(userRegisterRequest);
     }
 
 }

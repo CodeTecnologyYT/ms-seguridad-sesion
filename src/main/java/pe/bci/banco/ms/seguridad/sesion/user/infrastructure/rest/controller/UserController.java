@@ -36,7 +36,7 @@ public class UserController {
 
     @GetMapping("/{email}")
     public UserRs findUser(@PathVariable("email") final String email){
-        return userFindUseCase.findByEmail(email);
+        return this.userFindUseCase.findByEmail(email);
     }
 
 }

@@ -21,6 +21,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,6 +37,7 @@ import pe.bci.banco.ms.seguridad.sesion.shared.validations.EmailValid;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class AuthUserRegisterRq {
 
     /** name. */
@@ -67,6 +69,7 @@ public class AuthUserRegisterRq {
     @Setter
     @NoArgsConstructor
     @AllArgsConstructor
+    @Builder
     public static class PhoneRegister {
 
         /** number. */

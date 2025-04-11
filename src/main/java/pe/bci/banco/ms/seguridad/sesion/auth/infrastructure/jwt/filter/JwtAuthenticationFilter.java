@@ -24,6 +24,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import pe.bci.banco.ms.seguridad.sesion.auth.application.UserDetailsGetUseCase;
+import pe.bci.banco.ms.seguridad.sesion.auth.domain.provider.JwtProviderPort;
 import pe.bci.banco.ms.seguridad.sesion.auth.infrastructure.jwt.provider.JwtProvider;
 
 /**
@@ -37,7 +38,7 @@ import pe.bci.banco.ms.seguridad.sesion.auth.infrastructure.jwt.provider.JwtProv
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     /** jwtProvider. */
-    private final JwtProvider jwtProvider;
+    private final JwtProviderPort jwtProvider;
     /** userDetailsGetUseCase. */
     private final UserDetailsGetUseCase userDetailsGetUseCase;
 

@@ -46,6 +46,7 @@ public interface UserMapper {
      */
     @Mapping(target = "id", expression = "java(UUID.randomUUID())")
     @Mapping(target = "active", expression = "java(Boolean.TRUE)")
+    @Mapping(target = "lastLogin", expression = "java(LocalDateTime.now())")
     @Mapping(target = "createdAt", expression = "java(LocalDateTime.now())")
     @Mapping(target = "updatedAt", expression = "java(LocalDateTime.now())")
     UserEntity requestToEntity(final AuthUserRegisterRq user);

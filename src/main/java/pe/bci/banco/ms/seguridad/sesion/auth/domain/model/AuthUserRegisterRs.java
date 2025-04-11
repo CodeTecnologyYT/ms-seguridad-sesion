@@ -39,6 +39,8 @@ public class AuthUserRegisterRs {
     private LocalDateTime created;
     /** modified. */
     private LocalDateTime modified;
+    /** lastLogin. */
+    private LocalDateTime lastLogin;
     /** token. */
     private String token;
     /** isactive. */
