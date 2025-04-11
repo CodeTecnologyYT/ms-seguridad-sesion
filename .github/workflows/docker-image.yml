@@ -52,7 +52,7 @@ jobs:
 
     - name: 🚀 Desplegar en VPS
       run: |
-        ssh -o StrictHostKeyChecking=no usuario@IP_VPS << 'EOF'
+        ssh -o StrictHostKeyChecking=no root@143.198.137.50 << 'EOF'
           docker stop ms-seguridad-sesion || true
           docker rm ms-seguridad-sesion || true
           docker pull TU_USUARIO_DOCKER/ms-seguridad-sesion:latest
