@@ -83,7 +83,7 @@ server.port=8080
 Para iniciar la aplicación, puedes usar **Maven**:
 
 ```bash
-mvn spring-boot:run
+./gradlew bootRun
 ```
 
 La aplicación estará disponible en: [http://localhost:8080](http://localhost:8080)
@@ -167,7 +167,7 @@ src
 Este proyecto incluye **JUnit** para pruebas unitarias. Ejecútalas con:
 
 ```bash
-mvn test
+./gradlew test
 ```
 ### Probar la aplicacion
 Una vez que la aplicacion este corriendo puedes probar los endpoints de la aplicacion, para ello puedes usar el cliente de postman o swagger.
