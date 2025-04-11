@@ -45,7 +45,6 @@ dependencies {
     implementation "com.auth0:java-jwt:${versions.jwt}"
     // dependencias de base de datos
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.liquibase:liquibase-core'
     runtimeOnly 'com.h2database:h2'
     // dependencias de construccion de codigo
@@ -58,7 +57,7 @@ dependencies {
     implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${versions.swagger}"
     // dependencias de monitoreo
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
     // dependencias de testing
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
@@ -67,4 +66,7 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+tasks.named("bootJar") {
+    archiveFileName.set("app.jar")
 }

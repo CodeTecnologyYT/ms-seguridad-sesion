@@ -21,7 +21,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import pe.bci.banco.ms.seguridad.sesion.auth.application.IHistoryLoginCreateUseCase;
-import pe.bci.banco.ms.seguridad.sesion.auth.domain.model.AuthUserRegisterRq;
 
 /**
  * LoginHistoryAspect.

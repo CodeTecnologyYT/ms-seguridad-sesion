@@ -12,6 +12,7 @@
  */
 package pe.bci.banco.ms.seguridad.sesion.auth.application;
 
+import io.micrometer.core.instrument.Counter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -42,6 +43,8 @@ public class AuthUserUserRegisterUseCase implements IAuthUserRegisterUseCase {
     private final EncryptProviderPort encryptProvider;
     /** jwtProvider. */
     private final JwtProviderPort jwtProvider;
+    /** loginSuccessCounter. */
+    private final Counter loginSuccessCounter;
 
     /**
      * {@inheritDoc}
@@ -60,7 +63,7 @@ public class AuthUserUserRegisterUseCase implements IAuthUserRegisterUseCase {
             .password(newUser.getPassword())
             .roles("USER")
             .build();
-
+        this.loginSuccessCounter.increment();
         return AuthUserRegisterRs
             .builder()
             .id(newUser.getId())
