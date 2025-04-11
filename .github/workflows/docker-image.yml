@@ -44,3 +44,17 @@ jobs:
 
         docker push $IMAGE:$TAG
         docker push $IMAGE:latest
+
+    - name: 🧬 Configurar SSH
+      uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: 🚀 Desplegar en VPS
+      run: |
+        ssh -o StrictHostKeyChecking=no usuario@IP_VPS << 'EOF'
+          docker stop ms-seguridad-sesion || true
+          docker rm ms-seguridad-sesion || true
+          docker pull TU_USUARIO_DOCKER/ms-seguridad-sesion:latest
+          docker run -d --name ms-seguridad-sesion -p 8080:8080 TU_USUARIO_DOCKER/ms-seguridad-sesion:latest
+        EOF
