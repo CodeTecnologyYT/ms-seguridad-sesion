@@ -1,0 +1,27 @@
+name: ms-seguridad-sesion
+services:
+  # Configuracion de prometheus
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    depends_on:
+      - spring-boot-api
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    networks:
+      - seek-network
+  # Configuracion de Spring boot api
+  spring-boot-api:
+    image: bci/ms-seguridad-sesion:1.0.0
+    container_name: spring-boot-api
+    ports:
+      - "8080:8080"
+    networks:
+      - seek-network
+networks:
+  seek-network:
+    driver: bridge

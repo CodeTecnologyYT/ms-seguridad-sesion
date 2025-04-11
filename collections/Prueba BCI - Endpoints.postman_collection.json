@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "c0aa808b-30f6-4b2d-b0b5-6f979bf8c57f",
+		"name": "Prueba BCI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3894232",
+		"_collection_link": "https://speeding-sunset-563489.postman.co/workspace/Prueba-Tecnica~0e5ca889-0210-4ba9-a7de-7abd34abdac4/collection/3894232-c0aa808b-30f6-4b2d-b0b5-6f979bf8c57f?action=share&source=collection_link&creator=3894232"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "find by email",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Juan Rodriguez\",\n    \"email\": \"juan@company.org\",\n    \"password\": \"Hunter23$\",\n    \"phones\": [\n        {\n            \"number\": \"1234567\",\n            \"citycode\": \"1\",\n            \"countrycode\": \"57\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/security/session/auth/register",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"security",
+								"session",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

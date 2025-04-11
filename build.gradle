@@ -26,8 +26,10 @@ repositories {
 // Definicion de variables para las versiones de las dependencias
 ext {
     versions = [
-            'mapstruct'               : '1.6.3',
-            'bind_lombok_mapstruct': '0.2.0'
+            'mapstruct'            : '1.6.3',
+            'bind_lombok_mapstruct': '0.2.0',
+            'jwt'                  : '4.5.0',
+            'swagger'              : '2.8.4'
     ]
 }
 
@@ -35,12 +37,14 @@ ext {
 dependencies {
     // dependencias de spring
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
     // dependencias de seguridad
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation "com.auth0:java-jwt:${versions.jwt}"
     // dependencias de base de datos
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.liquibase:liquibase-core'
     runtimeOnly 'com.h2database:h2'
     // dependencias de construccion de codigo
@@ -49,9 +53,11 @@ dependencies {
     implementation "org.mapstruct:mapstruct:${versions.mapstruct}"
     annotationProcessor "org.mapstruct:mapstruct-processor:${versions.mapstruct}"
     implementation "org.projectlombok:lombok-mapstruct-binding:${versions.bind_lombok_mapstruct}"
+    // Dependencias de Documentacion
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${versions.swagger}"
     // dependencias de monitoreo
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
     // dependencias de testing
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
@@ -60,4 +66,7 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+tasks.named("bootJar") {
+    archiveFileName.set("app.jar")
 }
