@@ -39,6 +39,11 @@ mediante **Prometheus**.
 
 ---
 
+## Informacion adicional
+Puedes ver la wiki del proyecto y el kamban que se uso:
+- [wiki](https://github.com/CodeTecnologyYT/ms-seguridad-sesion/wiki)
+- [kamba](https://github.com/users/CodeTecnologyYT/projects/3)
+
 ## Requisitos Previos
 
 Antes de ejecutar este proyecto, asegúrate de cumplir con los siguientes requisitos:
