@@ -175,6 +175,29 @@ Una vez que la aplicacion este corriendo puedes probar los endpoints de la aplic
 Puedes probar la aplicacion usando el cliente de postman, puedes importar el archivo `postman_collection.json` que se encuentra en la raiz del proyecto.
 Tambien puede hacerlo por swagger ingresando a la ruta `http://localhost:8080/swagger-ui/index.html` y probando los endpoints.
 
+### Probar en ambiente productivo
+
+Para probar la aplicacion en ambiente productivo puedes usar el cliente de postman, puedes importar siguiente curl:
+
+```shell
+curl --location 'http://143.198.137.50:8080/security/session/auth/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Juan Rodriguez",
+    "email": "juan@nisum.org",
+    "password": "Hunter22",
+    "phones": [
+        {
+            "number": "1234567",
+            "citycode": "1",
+            "countrycode": "57"
+        }
+    ]
+}'
+```
+
+
+
 ---
 
 ## Autor
