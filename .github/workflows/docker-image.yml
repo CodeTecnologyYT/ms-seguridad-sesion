@@ -55,6 +55,6 @@ jobs:
         ssh -o StrictHostKeyChecking=no root@143.198.137.50 << 'EOF'
           docker stop ms-seguridad-sesion || true
           docker rm ms-seguridad-sesion || true
-          docker pull TU_USUARIO_DOCKER/ms-seguridad-sesion:latest
-          docker run -d --name ms-seguridad-sesion -p 8080:8080 TU_USUARIO_DOCKER/ms-seguridad-sesion:latest
+          docker pull ${{ secrets.DOCKER_USERNAME }}/ms-seguridad-sesion:latest
+          docker run -d --name ms-seguridad-sesion -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/ms-seguridad-sesion:latest
         EOF
