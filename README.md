@@ -97,7 +97,7 @@ La aplicación estará disponible en: [http://localhost:8080](http://localhost:8
 
 | Endpoint                                | Método | Descripción                                 |
 |-----------------------------------------|--------|---------------------------------------------|
-| `/security/session/users/users/{email}` | `GET`  | Acceso público para operaciones de usuario. |
+| `/security/session/users/{email}` | `GET`  | Acceso público para operaciones de usuario. |
 | `/security/session/auth/register`       | `POST` | Autenticación mediante JWT.                 |
 | `/actuator/prometheus`                  | `GET`  | Métricas para Prometheus.                   |
 | `/swagger-ui/**`                        | `GET`  | Documentación interactiva API (Swagger).    |
